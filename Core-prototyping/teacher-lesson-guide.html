@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Lesson Guide - Newsela Core</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color System */
+            --teal-500: #42CAE7;
+            --teal-700: #208095;
+            --teal-50: #E9FCFF;
+            --teal-300: #6AE0F8;
+            --neutral-500: #5B5A61;
+            --neutral-50: #F0F1F2;
+            --neutral-700: #1D1D1D;
+            --neutral-100: #E1E3E5;
+            --neutral-25: #F7F8F8;
+            --neutral-300: #8D8D96;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--neutral-25);
+            color: var(--neutral-700);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        .header {
+            height: 100px;
+            background: var(--white);
+            border-bottom: 1px solid var(--neutral-100);
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-icon {
+            width: 55px;
+            height: 52px;
+            background: var(--teal-500);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--neutral-700);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-name {
+            padding: 8px 16px;
+            background: var(--neutral-50);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--neutral-500);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--neutral-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-500);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Lesson Header */
+        .lesson-header {
+            background: var(--white);
+            padding: 32px 64px;
+            border-bottom: 1px solid var(--neutral-100);
+        }
+
+        .lesson-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .duration-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: var(--teal-50);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--teal-700);
+        }
+
+        .lesson-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--neutral-700);
+            line-height: 44px;
+            margin-bottom: 16px;
+        }
+
+        .standards-section {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .standard-tag {
+            padding: 6px 12px;
+            background: var(--neutral-50);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--neutral-500);
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 48px 64px;
+            max-width: 1200px;
+        }
+
+        .content-section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--neutral-700);
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--neutral-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        /* Card Styles */
+        .info-card {
+            background: var(--white);
+            border: 1px solid var(--neutral-100);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .info-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--neutral-700);
+            margin-bottom: 12px;
+        }
+
+        .info-card-content {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--neutral-500);
+            line-height: 24px;
+        }
+
+        /* Vocabulary Grid */
+        .vocabulary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .vocabulary-card {
+            background: var(--white);
+            border: 1px solid var(--neutral-100);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .vocabulary-card:hover {
+            box-shadow: 0px 4px 12px rgba(29, 29, 29, 0.08);
+            border-color: var(--teal-300);
+        }
+
+        .vocabulary-term {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--teal-700);
+            margin-bottom: 8px;
+        }
+
+        .vocabulary-definition {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--neutral-500);
+            line-height: 20px;
+        }
+
+        /* Questions List */
+        .questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .question-item {
+            background: var(--white);
+            border: 1px solid var(--neutral-100);
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .question-number {
+            min-width: 28px;
+            height: 28px;
+            background: var(--teal-50);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--teal-700);
+        }
+
+        .question-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--neutral-700);
+            line-height: 22px;
+        }
+
+        /* Lesson Steps */
+        .lesson-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .lesson-step {
+            background: var(--white);
+            border: 1px solid var(--neutral-100);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .lesson-step:hover {
+            box-shadow: 0px 4px 12px rgba(29, 29, 29, 0.08);
+        }
+
+        .step-header {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: var(--neutral-25);
+        }
+
+        .step-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .step-number {
+            min-width: 40px;
+            height: 40px;
+            background: var(--teal-500);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--neutral-700);
+        }
+
+        .step-duration {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--neutral-500);
+            padding: 6px 12px;
+            background: var(--white);
+            border-radius: 6px;
+        }
+
+        .step-content {
+            padding: 24px;
+            border-top: 1px solid var(--neutral-100);
+        }
+
+        .step-description {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--neutral-500);
+            line-height: 24px;
+            margin-bottom: 20px;
+        }
+
+        .step-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .step-option-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--neutral-700);
+            margin-bottom: 12px;
+        }
+
+        .option-card {
+            background: var(--neutral-25);
+            border: 1.5px solid var(--neutral-100);
+            border-radius: 8px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-card:hover {
+            border-color: var(--teal-500);
+            background: var(--teal-50);
+        }
+
+        .option-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .option-badge {
+            padding: 4px 10px;
+            background: var(--white);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--teal-700);
+        }
+
+        .option-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--neutral-700);
+        }
+
+        .option-description {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--neutral-500);
+            line-height: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            height: 44px;
+            min-width: 140px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--teal-500);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--teal-700);
+            transform: scale(1.02);
+        }
+
+        .student-lesson-link {
+            background: var(--teal-50);
+            border: 1px solid var(--teal-300);
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .student-lesson-link:hover {
+            box-shadow: 0px 4px 12px rgba(66, 202, 231, 0.2);
+        }
+
+        .student-lesson-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--teal-700);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header,
+            .lesson-header,
+            .content-area {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .lesson-title {
+                font-size: 28px;
+                line-height: 36px;
+            }
+
+            .vocabulary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-section" style="cursor: pointer;" onclick="window.location.href='index.html'" title="Back to Index">
+            <div class="logo-icon">N</div>
+            <div class="logo-text">Newsela Core</div>
+        </div>
+        <div class="user-profile">
+            <div class="user-name">Teacher Name</div>
+            <div class="user-avatar">TN</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Lesson Header -->
+        <section class="lesson-header">
+            <div class="lesson-meta">
+                <span class="duration-badge">⏱ 45 minutes</span>
+            </div>
+            <h1 class="lesson-title">Introduction to Argumentative Writing</h1>
+            <div class="standards-section">
+                <span class="standard-tag">CCSS.ELA-LITERACY.W.6.1</span>
+                <span class="standard-tag">CCSS.ELA-LITERACY.W.6.1.A</span>
+                <span class="standard-tag">CCSS.ELA-LITERACY.W.6.1.B</span>
+            </div>
+        </section>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Student Lesson Link -->
+            <div class="student-lesson-link" onclick="window.location.href='student-lesson-intro.html'">
+                <div class="student-lesson-text">📖 View Student Lesson</div>
+                <div class="btn-icon" style="color: var(--teal-700); font-size: 20px;">→</div>
+            </div>
+
+            <!-- Key Vocabulary -->
+            <section class="content-section">
+                <h2 class="section-title">Key lesson vocabulary</h2>
+                <div class="vocabulary-grid">
+                    <div class="vocabulary-card">
+                        <div class="vocabulary-term">Argument</div>
+                        <div class="vocabulary-definition">A claim supported by reasons and evidence to persuade an audience</div>
+                    </div>
+                    <div class="vocabulary-card">
+                        <div class="vocabulary-term">Claim</div>
+                        <div class="vocabulary-definition">A statement that expresses a writer's position on an issue</div>
+                    </div>
+                    <div class="vocabulary-card">
+                        <div class="vocabulary-term">Evidence</div>
+                        <div class="vocabulary-definition">Facts, examples, or expert opinions that support a claim</div>
+                    </div>
+                    <div class="vocabulary-card">
+                        <div class="vocabulary-term">Counterclaim</div>
+                        <div class="vocabulary-definition">An opposing viewpoint that challenges the main argument</div>
+                    </div>
+                    <div class="vocabulary-card">
+                        <div class="vocabulary-term">Reasoning</div>
+                        <div class="vocabulary-definition">The logical connection between evidence and the claim</div>
+                    </div>
+                    <div class="vocabulary-card">
+                        <div class="vocabulary-term">Persuasion</div>
+                        <div class="vocabulary-definition">The act of convincing someone to accept a particular point of view</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Essential Questions -->
+            <section class="content-section">
+                <h2 class="section-title">Essential questions</h2>
+                <div class="questions-list">
+                    <div class="question-item">
+                        <div class="question-number">1</div>
+                        <div class="question-text">What makes an argument effective and persuasive?</div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">2</div>
+                        <div class="question-text">How do writers use evidence to support their claims?</div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">3</div>
+                        <div class="question-text">Why is it important to address counterclaims in argumentative writing?</div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">4</div>
+                        <div class="question-text">How can we evaluate the credibility of sources and evidence?</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lesson Outline -->
+            <section class="content-section">
+                <h2 class="section-title">Lesson outline / sequence</h2>
+
+                <div class="lesson-steps">
+                    <!-- Step 1 -->
+                    <div class="lesson-step">
+                        <div class="step-header">
+                            <div class="step-header-left">
+                                <div class="step-number">1</div>
+                                <div class="step-title">Introduction & Hook</div>
+                            </div>
+                            <div class="step-duration">5 min</div>
+                        </div>
+                        <div class="step-content">
+                            <p class="step-description">
+                                Begin with an engaging scenario or question that introduces students to the concept of argumentation.
+                                Present a relatable topic where students might have differing opinions to spark discussion.
+                            </p>
+                            <div class="step-options">
+                                <div class="step-option-label">Choose an approach:</div>
+
+                                <div class="option-card">
+                                    <div class="option-header">
+                                        <span class="option-badge">Option A</span>
+                                        <span class="option-title">Class Debate Starter</span>
+                                    </div>
+                                    <p class="option-description">
+                                        Present a controversial topic (e.g., "Should students have longer recess?") and have students stand on different sides of the room based on their opinion.
+                                    </p>
+                                </div>
+
+                                <div class="option-card">
+                                    <div class="option-header">
+                                        <span class="option-badge">Option B</span>
+                                        <span class="option-title">Think-Pair-Share</span>
+                                    </div>
+                                    <p class="option-description">
+                                        Students individually think about a question, discuss with a partner, then share their reasoning with the class to highlight different perspectives.
+                                    </p>
+                                </div>
+
+                                <div class="option-card">
+                                    <div class="option-header">
+                                        <span class="option-badge">Option C</span>
+                                        <span class="option-title">Video Hook</span>
+                                    </div>
+                                    <p class="option-description">
+                                        Show a short video clip that presents a persuasive argument. Ask students to identify what made the argument convincing.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="lesson-step">
+                        <div class="step-header">
+                            <div class="step-header-left">
+                                <div class="step-number">2</div>
+                                <div class="step-title">Direct Instruction</div>
+                            </div>
+                            <div class="step-duration">10 min</div>
+                        </div>
+                        <div class="step-content">
+                            <p class="step-description">
+                                Explicitly teach the key components of argumentative writing. Use clear examples and visual aids to help students
+                                understand how claims, evidence, and reasoning work together.
+                            </p>
+                            <div class="step-options">
+                                <div class="step-option-label">Choose an approach:</div>
+
+                                <div class="option-card">
+                                    <div class="option-header">
+                                        <span class="option-badge">Option A</span>
+                                        <span class="option-title">Anchor Chart Creation</span>
+                                    </div>
+                                    <p class="option-description">
+                                        Create an anchor chart with students showing the structure of an argument (Claim → Evidence → Reasoning). Use a familiar example.
+                                    </p>
+                                </div>
+
+                                <div class="option-card">
+                                    <div class="option-header">
+                                        <span class="option-badge">Option B</span>
+                                        <span class="option-title">Annotated Model Text</span>
+                                    </div>
+                                    <p class="option-description">
+                                        Display a model argumentative paragraph and annotate it together, identifying and color-coding each component.
+                                    </p>
+                                </div>
+
+                                <div class="option-card">
+                                    <div class="option-header">
+                                        <span class="option-badge">Option C</span>
+                                        <span class="option-title">Interactive Presentation</span>
+                                    </div>
+                                    <p class="option-description">
+                                        Use slides or interactive whiteboard to present concepts with embedded questions and real-time student participation.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="lesson-step">
+                        <div class="step-header">
+                            <div class="step-header-left">
+                                <div class="step-number">3</div>
+                                <div class="step-title">Guided Practice</div>
+                            </div>
+                            <div class="step-duration">15 min</div>
+                        </div>
+                        <div class="step-content">
+                            <p class="step-description">
+                                Work together as a class to identify and analyze arguments. Guide students through the process of recognizing
+                                claims and evaluating the strength of evidence.
+                            </p>
+                            <div class="step-options">
+                                <div class="step-option-label">Choose an approach:</div>
+
+                                <div class="option-card">
+                                    <div class="option-header">
+                                        <span class="option-badge">Option A</span>
+                                        <span class="option-title">Newsela Article Analysis</span>
+                                    </div>
+                                    <p class="option-description">
+                                        Read a Newsela article together and have students identify the claim, evidence, and reasoning in small groups.
+                                    </p>
+                                </div>
+
+                                <div class="option-card">
+                                    <div class="option-header">
+                                        <span class="option-badge">Option B</span>
+                                        <span class="option-title">Claim Sort Activity</span>
+                                    </div>
+                                    <p class="option-description">
+                                        Provide students with statements and have them categorize as strong claims, weak claims, or not claims at all.
+                                    </p>
+                                </div>
+
+                                <div class="option-card">
+                                    <div class="option-header">
+                                        <span class="option-badge">Option C</span>
+                                        <span class="option-title">Evidence Evaluation</span>
+                                    </div>
+                                    <p class="option-description">
+                                        Present a claim with multiple pieces of evidence (strong and weak) and discuss which evidence best supports the claim and why.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="lesson-step">
+                        <div class="step-header">
+                            <div class="step-header-left">
+                                <div class="step-number">4</div>
+                                <div class="step-title">Independent Practice</div>
+                            </div>
+                            <div class="step-duration">12 min</div>
+                        </div>
+                        <div class="step-content">
+                            <p class="step-description">
+                                Students work independently to apply what they've learned. This is an opportunity for formative assessment
+                                and to identify students who may need additional support.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="lesson-step">
+                        <div class="step-header">
+                            <div class="step-header-left">
+                                <div class="step-number">5</div>
+                                <div class="step-title">Closing & Assessment</div>
+                            </div>
+                            <div class="step-duration">3 min</div>
+                        </div>
+                        <div class="step-content">
+                            <p class="step-description">
+                                Wrap up the lesson by reviewing key concepts and assessing student understanding. Preview the next lesson
+                                and how today's learning will connect to future work.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
