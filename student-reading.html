@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reading Article - Newsela Core</title>
+    <title>Reading Article - Hippo</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,32 +15,34 @@
         }
 
         :root {
-            --teal-500: #42CAE7;
-            --teal-700: #208095;
-            --teal-50: #E9FCFF;
-            --teal-300: #6AE0F8;
-            --neutral-500: #5B5A61;
-            --neutral-50: #F0F1F2;
-            --neutral-700: #1D1D1D;
-            --neutral-100: #E1E3E5;
-            --neutral-25: #F7F8F8;
-            --neutral-300: #8D8D96;
+            --purple-600: #7B2CBF;
+            --purple-700: #5A189A;
+            --purple-500: #A855F7;
+            --purple-300: #C084FC;
+            --purple-50: #F3E8FF;
+            --purple-100: #E9D5FF;
+            --neutral-900: #1A1A1A;
+            --neutral-700: #404040;
+            --neutral-500: #6B6B6B;
+            --neutral-200: #E5E5E5;
+            --neutral-100: #F5F5F5;
+            --neutral-50: #FAFAFA;
             --white: #FFFFFF;
             --highlight: #FFF176;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--neutral-25);
-            color: var(--neutral-700);
+            background-color: var(--neutral-50);
+            color: var(--neutral-900);
             -webkit-font-smoothing: antialiased;
         }
 
         .header {
-            height: 70px;
+            height: 72px;
             background: var(--white);
-            border-bottom: 1px solid var(--neutral-100);
-            padding: 16px 32px;
+            border-bottom: 1px solid var(--neutral-200);
+            padding: 0 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -54,23 +57,42 @@
             gap: 16px;
         }
 
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            color: var(--purple-600);
+        }
+
+        .logo-text {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--neutral-900);
+        }
+
         .back-button {
             display: flex;
             align-items: center;
             gap: 8px;
             padding: 8px 12px;
-            background: var(--neutral-25);
+            background: var(--neutral-100);
             border: none;
             border-radius: 8px;
             font-size: 14px;
             font-weight: 500;
-            color: var(--neutral-700);
+            color: var(--neutral-900);
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .back-button:hover {
-            background: var(--neutral-50);
+            background: var(--neutral-200);
         }
 
         .lesson-progress-bar {
@@ -88,7 +110,7 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--teal-500), var(--teal-300));
+            background: linear-gradient(90deg, var(--purple-600), var(--purple-500));
             width: 33%;
             transition: width 0.3s ease;
         }
@@ -108,8 +130,8 @@
         .tool-button {
             width: 40px;
             height: 40px;
-            background: var(--neutral-25);
-            border: 1px solid var(--neutral-100);
+            background: var(--neutral-100);
+            border: 1px solid var(--neutral-200);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -120,14 +142,14 @@
         }
 
         .tool-button:hover {
-            background: var(--teal-50);
-            border-color: var(--teal-300);
+            background: var(--purple-50);
+            border-color: var(--purple-300);
         }
 
         .tool-button.active {
-            background: var(--teal-500);
+            background: var(--purple-600);
             color: var(--white);
-            border-color: var(--teal-500);
+            border-color: var(--purple-600);
         }
 
         .main-content {
@@ -156,7 +178,7 @@
         .article-category {
             font-size: 13px;
             font-weight: 600;
-            color: var(--teal-700);
+            color: var(--purple-700);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 16px;
@@ -202,7 +224,7 @@
         }
 
         .vocab-tooltip {
-            color: var(--teal-700);
+            color: var(--purple-700);
             font-weight: 600;
             text-decoration: underline;
             text-decoration-style: dotted;
@@ -236,12 +258,12 @@
 
         .note-item {
             padding: 12px;
-            background: var(--teal-50);
+            background: var(--purple-50);
             border-radius: 8px;
             margin-bottom: 8px;
             font-size: 14px;
             line-height: 1.5;
-            color: var(--neutral-700);
+            color: var(--neutral-900);
         }
 
         .note-text {
@@ -252,26 +274,26 @@
         .add-note-button {
             width: 100%;
             padding: 10px;
-            background: var(--neutral-25);
-            border: 1.5px dashed var(--neutral-300);
+            background: var(--neutral-100);
+            border: 1.5px dashed var(--neutral-500);
             border-radius: 8px;
             font-size: 14px;
             font-weight: 500;
-            color: var(--neutral-500);
+            color: var(--neutral-700);
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .add-note-button:hover {
-            background: var(--teal-50);
-            border-color: var(--teal-500);
-            color: var(--teal-700);
+            background: var(--purple-50);
+            border-color: var(--purple-600);
+            color: var(--purple-700);
         }
 
         .continue-button {
             width: 100%;
             padding: 14px 24px;
-            background: var(--teal-500);
+            background: var(--purple-600);
             color: var(--white);
             border: none;
             border-radius: 10px;
@@ -286,7 +308,7 @@
         }
 
         .continue-button:hover {
-            background: var(--teal-700);
+            background: var(--purple-700);
             transform: translateY(-1px);
         }
 
@@ -308,6 +330,10 @@
 </head>
 <body>
     <header class="header">
+        <div class="logo-section" onclick="window.location.href='index.html'" title="Back to Index">
+            <div class="logo-icon">🧵</div>
+            <div class="logo-text">Threads & Themes</div>
+        </div>
         <div class="header-left">
             <button class="back-button" onclick="window.location.href='student-lesson-intro.html'">←</button>
             <div class="lesson-progress-bar">
@@ -322,7 +348,6 @@
             <button class="tool-button" title="Add Note">📝</button>
             <button class="tool-button" title="Dictionary">📖</button>
             <button class="tool-button" title="Text Size">Aa</button>
-            <button class="tool-button" onclick="window.location.href='index.html'" title="Back to Index">🏠</button>
         </div>
     </header>
 
@@ -397,17 +422,17 @@
 
             <div class="sidebar-card">
                 <h3 class="sidebar-title">📚 Vocabulary</h3>
-                <div style="font-size: 14px; line-height: 1.6; color: var(--neutral-500);">
+                <div style="font-size: 14px; line-height: 1.6; color: var(--neutral-700);">
                     <p style="margin-bottom: 12px;">
-                        <strong style="color: var(--teal-700);">Cognitive function:</strong><br>
+                        <strong style="color: var(--purple-700);">Cognitive function:</strong><br>
                         Mental processes like thinking, learning, and remembering
                     </p>
                     <p style="margin-bottom: 12px;">
-                        <strong style="color: var(--teal-700);">Cooperation:</strong><br>
+                        <strong style="color: var(--purple-700);">Cooperation:</strong><br>
                         Working together toward a common goal
                     </p>
                     <p>
-                        <strong style="color: var(--teal-700);">Counterclaim:</strong><br>
+                        <strong style="color: var(--purple-700);">Counterclaim:</strong><br>
                         An opposing viewpoint or argument
                     </p>
                 </div>

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson Introduction - Newsela Core</title>
+    <title>Lesson 5 - Threads & Themes</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,365 +14,671 @@
         }
 
         :root {
-            --teal-500: #42CAE7;
-            --teal-700: #208095;
-            --teal-50: #E9FCFF;
-            --teal-300: #6AE0F8;
-            --neutral-500: #5B5A61;
-            --neutral-50: #F0F1F2;
-            --neutral-700: #1D1D1D;
-            --neutral-100: #E1E3E5;
-            --neutral-25: #F7F8F8;
-            --neutral-300: #8D8D96;
+            --purple-600: #7B2CBF;
+            --purple-100: #E9D5FF;
+            --orange-500: #FF6B35;
+            --orange-50: #FFF4ED;
+            --neutral-900: #1A1A1A;
+            --neutral-700: #404040;
+            --neutral-500: #6B6B6B;
+            --neutral-200: #E5E5E5;
+            --neutral-100: #F5F5F5;
             --white: #FFFFFF;
+            --pink-500: #EC4899;
+            --pink-50: #FDF2F8;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, var(--teal-50) 0%, var(--white) 100%);
-            color: var(--neutral-700);
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-100);
+            color: var(--neutral-900);
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Header */
         .header {
-            height: 70px;
+            height: 64px;
             background: var(--white);
-            border-bottom: 1px solid var(--neutral-100);
-            padding: 16px 32px;
+            border-bottom: 1px solid var(--neutral-200);
+            padding: 0 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .back-button {
+        .logo {
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            background: var(--neutral-25);
-            border: none;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            color: var(--purple-600);
+        }
+
+        .logo-text {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--neutral-900);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--purple-600);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 32px 80px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--neutral-500);
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--neutral-500);
+            text-decoration: none;
+        }
+
+        /* Lesson Header */
+        .lesson-type-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: var(--orange-50);
+            color: var(--orange-500);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .lesson-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        /* Standards Tags */
+        .standards-section {
+            margin-bottom: 20px;
+        }
+
+        .standards-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--neutral-500);
+            margin-bottom: 12px;
+        }
+
+        .standards-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .standard-tag {
+            padding: 6px 12px;
+            background: var(--purple-100);
+            color: var(--purple-600);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 16px;
+        }
+
+        /* Actions */
+        .lesson-actions {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: var(--white);
+            border: 1px solid var(--neutral-200);
             border-radius: 8px;
             font-size: 14px;
             font-weight: 500;
             color: var(--neutral-700);
             cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .back-button:hover {
-            background: var(--neutral-50);
-        }
-
-        .lesson-progress-bar {
-            flex: 1;
-            max-width: 400px;
-            margin: 0 24px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
+        .action-btn:hover {
             background: var(--neutral-100);
-            border-radius: 3px;
-            overflow: hidden;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--teal-500), var(--teal-300));
-            border-radius: 3px;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .progress-text {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--neutral-500);
-            margin-top: 4px;
-        }
-
-        .main-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 32px;
-        }
-
-        .lesson-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 16px;
+        /* Section */
+        .section {
             background: var(--white);
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--teal-700);
-            margin-bottom: 24px;
-            box-shadow: 0 2px 8px rgba(66, 202, 231, 0.15);
-        }
-
-        .lesson-title {
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--neutral-700);
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-
-        .lesson-meta {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 48px;
-            flex-wrap: wrap;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--neutral-500);
-        }
-
-        .section-card {
-            background: var(--white);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 32px;
             margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(29, 29, 29, 0.06);
         }
 
         .section-title {
             font-size: 20px;
-            font-weight: 600;
-            color: var(--neutral-700);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: 24px;
         }
 
-        .section-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--teal-50);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
+        /* In This Lesson */
+        .lesson-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 32px;
         }
 
-        .objectives-list {
+        .objectives-section {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .objective-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 15px;
-            font-weight: 400;
-            color: var(--neutral-500);
-            line-height: 24px;
-        }
-
-        .objective-bullet {
-            min-width: 24px;
-            height: 24px;
-            background: var(--teal-50);
-            border-radius: 50%;
+        .objective-icon {
+            width: 56px;
+            height: 56px;
+            background: #FFF9E6;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--teal-700);
-            font-size: 12px;
-            font-weight: 600;
-            margin-top: 2px;
+            font-size: 32px;
+            margin-bottom: 16px;
         }
 
-        .vocabulary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
+        .objectives-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: 12px;
         }
 
-        .vocab-item {
-            padding: 16px;
-            background: var(--neutral-25);
+        .objectives-list {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .objectives-list li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--neutral-700);
+        }
+
+        .learning-context {
+            margin-top: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--neutral-700);
+        }
+
+        /* Essential Question Box */
+        .essential-question-box {
+            background: var(--pink-50);
+            border: 1px solid var(--pink-500);
             border-radius: 12px;
-            border: 1px solid var(--neutral-100);
+            padding: 24px;
         }
 
-        .vocab-term {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--teal-700);
-            margin-bottom: 6px;
+        .eq-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 12px;
         }
 
-        .vocab-definition {
-            font-size: 13px;
-            font-weight: 400;
-            color: var(--neutral-500);
-            line-height: 18px;
+        .eq-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--pink-500);
+            margin-bottom: 8px;
         }
 
-        .action-section {
-            margin-top: 48px;
-            text-align: center;
-        }
-
-        .start-button {
-            padding: 16px 48px;
-            background: var(--teal-500);
-            color: var(--white);
-            border: none;
-            border-radius: 12px;
+        .eq-question {
             font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
+            font-weight: 700;
+            color: var(--neutral-900);
+            line-height: 1.4;
+        }
+
+        /* Text Cards */
+        .texts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .text-card {
+            border: 1px solid var(--neutral-200);
+            border-radius: 12px;
+            overflow: hidden;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 16px rgba(66, 202, 231, 0.3);
+        }
+
+        .text-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .text-content {
+            padding: 20px;
+        }
+
+        .text-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .text-label-newsela {
+            color: var(--pink-500);
+        }
+
+        .text-label-novel {
+            color: var(--orange-500);
+        }
+
+        .text-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--neutral-900);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .text-author {
+            font-size: 13px;
+            color: var(--neutral-500);
+            margin-bottom: 16px;
+        }
+
+        .text-link {
             display: inline-flex;
             align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--purple-600);
+            text-decoration: none;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Lesson Sequence */
+        .sequence-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .collapse-btn {
+            padding: 6px 12px;
+            background: var(--white);
+            border: 1px solid var(--neutral-200);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--neutral-700);
+            cursor: pointer;
+        }
+
+        .sequence-items {
+            display: flex;
+            flex-direction: column;
             gap: 12px;
         }
 
-        .start-button:hover {
-            background: var(--teal-700);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(66, 202, 231, 0.4);
+        .sequence-item {
+            border: 1px solid var(--neutral-200);
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        .start-button:active {
-            transform: translateY(0);
+        .sequence-item-header {
+            padding: 16px 20px;
+            background: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
         }
 
+        .sequence-item-header:hover {
+            background: var(--neutral-100);
+        }
+
+        .sequence-item-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--neutral-900);
+        }
+
+        .sequence-item-body {
+            padding: 24px;
+            background: var(--neutral-100);
+            border-top: 1px solid var(--neutral-200);
+        }
+
+        .sequence-item.collapsed .sequence-item-body {
+            display: none;
+        }
+
+        .activity-section {
+            margin-bottom: 24px;
+        }
+
+        .activity-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: 12px;
+        }
+
+        .activity-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--neutral-700);
+            margin-bottom: 12px;
+        }
+
+        .activity-image {
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .note-box {
+            background: var(--white);
+            border-left: 3px solid var(--purple-600);
+            padding: 16px;
+            border-radius: 6px;
+            margin-top: 16px;
+        }
+
+        .note-box-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: 8px;
+        }
+
+        .note-box-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--neutral-700);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .main-content {
-                padding: 40px 20px;
+            .lesson-intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .texts-grid {
+                grid-template-columns: 1fr;
             }
 
             .lesson-title {
-                font-size: 32px;
-            }
-
-            .section-card {
-                padding: 24px;
-            }
-
-            .vocabulary-grid {
-                grid-template-columns: 1fr;
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
-        <button class="back-button" onclick="window.location.href='student-home.html'">
-            ← Back to Lessons
-        </button>
-        <div class="lesson-progress-bar">
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 0%;"></div>
-            </div>
-            <div class="progress-text">Step 1 of 6</div>
+        <div class="logo" onclick="window.location.href='index.html'">
+            <div class="logo-icon">🧵</div>
+            <div class="logo-text">Threads & Themes</div>
         </div>
-        <div style="width: 140px; cursor: pointer; display: flex; align-items: center; justify-content: flex-end; font-size: 24px;" onclick="window.location.href='index.html'" title="Back to Index">🏠</div>
+        <div class="user-avatar"></div>
     </header>
 
+    <!-- Main Content -->
     <main class="main-content">
-        <div class="lesson-badge">
-            📝 Core Writing Lesson
-        </div>
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="teacher-home.html">Home</a>
+            <span>›</span>
+            <a href="teacher-home.html">ELA Core 6th grade</a>
+            <span>›</span>
+            <span>Lesson 7</span>
+        </nav>
 
-        <h1 class="lesson-title">Introduction to Argumentative Writing</h1>
+        <!-- Lesson Header -->
+        <div class="lesson-type-badge">PRESENTATION</div>
+        <h1 class="lesson-title">Lesson 5: Community And Social Justice (Ch. 15)</h1>
 
-        <div class="lesson-meta">
-            <div class="meta-item">
-                <span>⏱</span>
-                <span>45 minutes</span>
+        <!-- Standards -->
+        <div class="standards-section">
+            <div class="standards-label">California CCSS: Essay Standards</div>
+            <div class="standards-tags">
+                <span class="standard-tag">W.6.1</span>
+                <span class="standard-tag">W.6.4</span>
+                <span class="standard-tag">W.6.5</span>
+                <span class="standard-tag">SL.6.6</span>
+                <span class="standard-tag">W.6.1.A</span>
+                <span class="standard-tag">W.6.1.E</span>
+                <span class="standard-tag">SL.6.1.A</span>
             </div>
-            <div class="meta-item">
-                <span>📊</span>
-                <span>Grade 6-8</span>
+            <div class="standards-label" style="margin-top: 12px;">California CCSS: Supporting standards</div>
+            <div class="standards-tags">
+                <span class="standard-tag">W.6.1</span>
+                <span class="standard-tag">W.6.4</span>
+                <span class="standard-tag">L.6.4.A</span>
+                <span class="standard-tag">L.6.6</span>
             </div>
-            <div class="meta-item">
-                <span>📚</span>
-                <span>6 Activities</span>
-            </div>
-        </div>
-
-        <div class="section-card">
-            <h2 class="section-title">
-                <span class="section-icon">🎯</span>
-                Learning Objectives
-            </h2>
-            <div class="objectives-list">
-                <div class="objective-item">
-                    <span class="objective-bullet">1</span>
-                    <span>Understand the key components of an effective argument: claim, evidence, and reasoning</span>
-                </div>
-                <div class="objective-item">
-                    <span class="objective-bullet">2</span>
-                    <span>Identify strong claims and distinguish them from weak or unsupported statements</span>
-                </div>
-                <div class="objective-item">
-                    <span class="objective-bullet">3</span>
-                    <span>Evaluate different types of evidence and their effectiveness in supporting arguments</span>
-                </div>
-                <div class="objective-item">
-                    <span class="objective-bullet">4</span>
-                    <span>Recognize and respond to counterclaims in argumentative writing</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-card">
-            <h2 class="section-title">
-                <span class="section-icon">📖</span>
-                Key Vocabulary
-            </h2>
-            <div class="vocabulary-grid">
-                <div class="vocab-item">
-                    <div class="vocab-term">Argument</div>
-                    <div class="vocab-definition">A claim supported by reasons and evidence</div>
-                </div>
-                <div class="vocab-item">
-                    <div class="vocab-term">Claim</div>
-                    <div class="vocab-definition">A statement expressing a position</div>
-                </div>
-                <div class="vocab-item">
-                    <div class="vocab-term">Evidence</div>
-                    <div class="vocab-definition">Facts supporting a claim</div>
-                </div>
-                <div class="vocab-item">
-                    <div class="vocab-term">Counterclaim</div>
-                    <div class="vocab-definition">An opposing viewpoint</div>
-                </div>
-                <div class="vocab-item">
-                    <div class="vocab-term">Reasoning</div>
-                    <div class="vocab-definition">Logical connection to claim</div>
-                </div>
-                <div class="vocab-item">
-                    <div class="vocab-term">Persuasion</div>
-                    <div class="vocab-definition">Convincing others</div>
-                </div>
+            <div class="standards-label" style="margin-top: 12px;">ELD Standards</div>
+            <div class="standards-tags">
+                <span class="standard-tag">W.6.1</span>
+                <span class="standard-tag">W.6.4</span>
+                <span class="standard-tag">W.6.5</span>
+                <span class="standard-tag">SL.6.6</span>
+                <span class="standard-tag">W.6.1.A</span>
+                <span class="standard-tag">W.6.1.E</span>
+                <span class="standard-tag">SL.6.1.A</span>
+                <span class="standard-tag">W.6.1</span>
+                <span class="standard-tag">W.6.4</span>
+                <span class="standard-tag">L.6.4.A</span>
+                <span class="standard-tag">L.6.6</span>
+                <span class="standard-tag">L.6.5.C</span>
+                <span class="standard-tag">L.6.4.D</span>
             </div>
         </div>
 
-        <div class="action-section">
-            <button class="start-button" onclick="window.location.href='student-reading.html'">
-                Start Lesson
-                <span style="font-size: 22px;">→</span>
-            </button>
+        <!-- Actions -->
+        <div class="lesson-actions">
+            <button class="action-btn">🔗 Share</button>
+            <button class="action-btn">🖨 Print lesson</button>
         </div>
+
+        <!-- In This Lesson -->
+        <section class="section">
+            <h2 class="section-title">In this lesson</h2>
+            <div class="lesson-intro-grid">
+                <div class="objectives-section">
+                    <div class="objective-icon">💡</div>
+                    <div class="objectives-title">Today you will</div>
+                    <ul class="objectives-list">
+                        <li>How friendships, loyalty, and conflict shape identity.</li>
+                        <li>How class differences affect belonging and choices.</li>
+                        <li>How literature builds empathy by showing multiple perspectives.</li>
+                    </ul>
+                    <p class="learning-context">
+                        Today's learning will help you understand how skilled work is learned over time and how authors weave that learning
+                        through character actions and details.
+                    </p>
+                </div>
+
+                <div class="essential-question-box">
+                    <div class="eq-icon">🧠</div>
+                    <div class="eq-label">ESSENTIAL QUESTION</div>
+                    <div class="eq-question">What Does It Take To Learn Something Difficult?</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Texts Used -->
+        <section class="section">
+            <h2 class="section-title">Texts used in this lesson</h2>
+            <div class="texts-grid">
+                <div class="text-card">
+                    <div class="text-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="text-content">
+                        <div class="text-label text-label-newsela">NEWSELA TEXT</div>
+                        <div class="text-title">That waxworld tandoori chicken: Australia's slow embrace of regional Indian cuisine</div>
+                        <a href="student-reading.html" class="text-link">Read text 🔗</a>
+                    </div>
+                </div>
+
+                <div class="text-card">
+                    <div class="text-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="text-content">
+                        <div class="text-label text-label-novel">NOVEL</div>
+                        <div class="text-title">That waxworld tandoori chicken: Australia's slow embrace of regional Indian cuisine</div>
+                        <div class="text-author">J. D. Salinger</div>
+                        <a href="#" class="text-link">Open PDF 🔗</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lesson Sequence -->
+        <section class="section">
+            <div class="sequence-header">
+                <h2 class="section-title" style="margin-bottom: 0;">Lesson Sequence</h2>
+                <button class="collapse-btn">Collapse all</button>
+            </div>
+
+            <div class="sequence-items">
+                <!-- Launch -->
+                <div class="sequence-item collapsed">
+                    <div class="sequence-item-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                        <div class="sequence-item-title">1. Launch</div>
+                        <div>▼</div>
+                    </div>
+                    <div class="sequence-item-body">
+                        <p class="activity-text">Begin with a warm-up activity to activate prior knowledge and connect to the lesson theme.</p>
+                    </div>
+                </div>
+
+                <!-- Literacy Lab -->
+                <div class="sequence-item">
+                    <div class="sequence-item-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                        <div class="sequence-item-title">2. Literacy Lab</div>
+                        <div>▼</div>
+                    </div>
+                    <div class="sequence-item-body">
+                        <div class="activity-section">
+                            <h3 class="activity-title">Vocabulary & Morphology</h3>
+                            <p class="activity-text">
+                                Before you return to the text, let's study a few important words from today's pages. Understanding how words are built can help
+                                you understand the passage more deeply. Have you seen the words prefiled or impurities before? Where?
+                            </p>
+                            <p class="activity-text">
+                                Have a conversation with a partner about the word "base" or "great." Do you know any other words related to this base word?
+                                What about the word stone? This is an instructive word with a metaloid or an intrustod portion, a sort of matter from different
+                                parts of loose matter. You may have seen a version of this tool in a kitchen.
+                            </p>
+
+                            <div class="activity-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+
+                            <p class="activity-text"><strong>Image caption:</strong></p>
+                            <p class="activity-text">Sieve</p>
+                        </div>
+
+                        <div class="activity-section">
+                            <h3 class="activity-title">Text example</h3>
+                            <p class="activity-text">
+                                "Then the sludge was scooped up and poured through a sieve into a neighboring pit. The sieving winnowed out tiny pebbles and impurities."
+                                Neither the sludge...big change than a word is used in a sentence. In this particular case, ...ing means this action sieve into a verb or action.
+                                Think about how the sludge (or a metal) is poured in the sentence.
+                            </p>
+                        </div>
+
+                        <div class="note-box">
+                            <div class="note-box-title">Note-taking Break</div>
+                            <div class="note-box-text">
+                                List the words impurities, scooped, sieve, and starting in the vocabulary section of your notebook. Underline the base word (root) and circle
+                                the prefix or suffix. Write out what each word means in your own original sentence.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning in Action -->
+                <div class="sequence-item collapsed">
+                    <div class="sequence-item-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                        <div class="sequence-item-title">3. Learning in Action</div>
+                        <div>▼</div>
+                    </div>
+                    <div class="sequence-item-body">
+                        <p class="activity-text">Apply what you've learned through guided practice and independent work.</p>
+                    </div>
+                </div>
+
+                <!-- Look Back -->
+                <div class="sequence-item collapsed">
+                    <div class="sequence-item-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                        <div class="sequence-item-title">4. Look Back</div>
+                        <div>▼</div>
+                    </div>
+                    <div class="sequence-item-body">
+                        <p class="activity-text">Reflect on what you learned and how it connects to the essential question.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 </body>
 </html>

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Lesson Guide - Newsela Core</title>
+    <title>Lesson Guide - Threads & Themes</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,34 +14,34 @@
         }
 
         :root {
-            /* Color System */
-            --teal-500: #42CAE7;
-            --teal-700: #208095;
-            --teal-50: #E9FCFF;
-            --teal-300: #6AE0F8;
-            --neutral-500: #5B5A61;
-            --neutral-50: #F0F1F2;
-            --neutral-700: #1D1D1D;
-            --neutral-100: #E1E3E5;
-            --neutral-25: #F7F8F8;
-            --neutral-300: #8D8D96;
+            --purple-600: #7B2CBF;
+            --purple-700: #5A189A;
+            --purple-100: #E9D5FF;
+            --purple-50: #F5ECFF;
+            --teal-500: #00B4D8;
+            --orange-500: #FF6B35;
+            --neutral-900: #1A1A1A;
+            --neutral-700: #404040;
+            --neutral-500: #6B6B6B;
+            --neutral-300: #A0A0A0;
+            --neutral-200: #E5E5E5;
+            --neutral-100: #F5F5F5;
             --white: #FFFFFF;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--neutral-25);
-            color: var(--neutral-700);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-100);
+            color: var(--neutral-900);
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Header */
         .header {
-            height: 100px;
+            height: 72px;
             background: var(--white);
-            border-bottom: 1px solid var(--neutral-100);
-            padding: 24px 48px;
+            border-bottom: 1px solid var(--neutral-200);
+            padding: 0 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -52,192 +53,219 @@
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 8px;
+            cursor: pointer;
         }
 
         .logo-icon {
-            width: 55px;
-            height: 52px;
-            background: var(--teal-500);
-            border-radius: 8px;
+            font-size: 24px;
+            color: var(--teal-500);
+        }
+
+        .logo-text {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--neutral-900);
+        }
+
+        .user-profile {
+            width: 40px;
+            height: 40px;
+            background: var(--purple-600);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--neutral-700);
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .user-name {
-            padding: 8px 16px;
-            background: var(--neutral-50);
-            border-radius: 8px;
             font-size: 14px;
-            font-weight: 500;
-            color: var(--neutral-500);
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--neutral-50);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--neutral-500);
-            font-size: 16px;
             font-weight: 600;
         }
 
         /* Main Content */
-        .main-content {
-            max-width: 1440px;
+        .lesson-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            max-width: 1600px;
             margin: 0 auto;
-            padding: 0;
+            min-height: calc(100vh - 72px);
         }
 
-        /* Lesson Header */
-        .lesson-header {
+        /* Sidebar */
+        .sidebar {
             background: var(--white);
-            padding: 32px 64px;
-            border-bottom: 1px solid var(--neutral-100);
+            border-right: 1px solid var(--neutral-200);
+            padding: 24px;
+            height: calc(100vh - 72px);
+            overflow-y: auto;
+            position: sticky;
+            top: 72px;
         }
 
-        .lesson-meta {
-            display: flex;
-            align-items: center;
-            gap: 16px;
+        .sidebar-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--neutral-500);
             margin-bottom: 16px;
         }
 
-        .duration-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 16px;
-            background: var(--teal-50);
-            border-radius: 6px;
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            padding: 8px 12px;
             font-size: 14px;
             font-weight: 500;
-            color: var(--teal-700);
-        }
-
-        .lesson-title {
-            font-size: 36px;
-            font-weight: 700;
             color: var(--neutral-700);
-            line-height: 44px;
-            margin-bottom: 16px;
-        }
-
-        .standards-section {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .standard-tag {
-            padding: 6px 12px;
-            background: var(--neutral-50);
+            cursor: pointer;
             border-radius: 6px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--neutral-500);
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover {
+            background: var(--neutral-100);
+        }
+
+        .nav-item.active {
+            background: var(--purple-50);
+            color: var(--purple-600);
         }
 
         /* Content Area */
         .content-area {
-            padding: 48px 64px;
-            max-width: 1200px;
+            background: var(--white);
+            padding: 48px;
+            overflow-y: auto;
         }
 
-        .content-section {
-            margin-bottom: 48px;
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--neutral-500);
+            margin-bottom: 24px;
         }
 
-        .section-title {
-            font-size: 24px;
+        .breadcrumb a {
+            color: var(--neutral-500);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--purple-600);
+        }
+
+        /* Lesson Header */
+        .lesson-header {
+            margin-bottom: 32px;
+        }
+
+        .lesson-title {
+            font-size: 32px;
             font-weight: 700;
-            color: var(--neutral-700);
+            color: var(--neutral-900);
             margin-bottom: 20px;
         }
 
-        .section-subtitle {
+        .lesson-overview-banner {
+            background: var(--purple-600);
+            color: var(--white);
+            padding: 24px 32px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .banner-title {
             font-size: 14px;
-            font-weight: 500;
-            color: var(--neutral-500);
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
+            letter-spacing: 1px;
         }
 
-        /* Card Styles */
-        .info-card {
-            background: var(--white);
-            border: 1px solid var(--neutral-100);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 16px;
-        }
-
-        .info-card-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--neutral-700);
-            margin-bottom: 12px;
-        }
-
-        .info-card-content {
-            font-size: 15px;
-            font-weight: 400;
-            color: var(--neutral-500);
-            line-height: 24px;
-        }
-
-        /* Vocabulary Grid */
-        .vocabulary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .vocabulary-card {
-            background: var(--white);
-            border: 1px solid var(--neutral-100);
-            border-radius: 12px;
-            padding: 20px;
-            transition: all 0.2s ease;
-        }
-
-        .vocabulary-card:hover {
-            box-shadow: 0px 4px 12px rgba(29, 29, 29, 0.08);
-            border-color: var(--teal-300);
-        }
-
-        .vocabulary-term {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--teal-700);
-            margin-bottom: 8px;
-        }
-
-        .vocabulary-definition {
+        .banner-meta {
+            display: flex;
+            gap: 32px;
             font-size: 14px;
-            font-weight: 400;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-icon {
+            font-size: 20px;
+        }
+
+        .section-content {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--neutral-700);
+        }
+
+        /* Objectives Grid */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .objective-card {
+            background: var(--neutral-100);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .objective-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .objective-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
             color: var(--neutral-500);
-            line-height: 20px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .objective-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--neutral-700);
         }
 
         /* Questions List */
@@ -248,33 +276,70 @@
         }
 
         .question-item {
-            background: var(--white);
-            border: 1px solid var(--neutral-100);
-            border-radius: 12px;
-            padding: 20px 24px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .question-number {
-            min-width: 28px;
-            height: 28px;
-            background: var(--teal-50);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--teal-700);
-        }
-
-        .question-text {
+            padding: 16px 20px;
+            background: var(--neutral-100);
+            border-radius: 8px;
             font-size: 15px;
-            font-weight: 500;
+            line-height: 1.6;
             color: var(--neutral-700);
-            line-height: 22px;
+        }
+
+        /* Table */
+        .lesson-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid var(--neutral-200);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .lesson-table th {
+            background: var(--neutral-100);
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--neutral-700);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .lesson-table td {
+            padding: 16px;
+            font-size: 14px;
+            color: var(--neutral-700);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .lesson-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Vocabulary */
+        .vocabulary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .vocab-card {
+            background: var(--purple-50);
+            border: 1px solid var(--purple-100);
+            padding: 16px 20px;
+            border-radius: 8px;
+        }
+
+        .vocab-term {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--purple-700);
+            margin-bottom: 8px;
+        }
+
+        .vocab-definition {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--neutral-700);
         }
 
         /* Lesson Steps */
@@ -284,207 +349,148 @@
             gap: 24px;
         }
 
-        .lesson-step {
-            background: var(--white);
-            border: 1px solid var(--neutral-100);
+        .step-card {
+            border: 1px solid var(--neutral-200);
             border-radius: 12px;
             overflow: hidden;
-            transition: all 0.2s ease;
-        }
-
-        .lesson-step:hover {
-            box-shadow: 0px 4px 12px rgba(29, 29, 29, 0.08);
         }
 
         .step-header {
-            padding: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            background: var(--neutral-25);
-        }
-
-        .step-header-left {
+            background: var(--neutral-100);
+            padding: 16px 24px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
         }
 
         .step-number {
-            min-width: 40px;
-            height: 40px;
-            background: var(--teal-500);
-            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            background: var(--purple-600);
+            color: var(--white);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
-            color: var(--white);
         }
 
         .step-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            color: var(--neutral-700);
-        }
-
-        .step-duration {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--neutral-500);
-            padding: 6px 12px;
-            background: var(--white);
-            border-radius: 6px;
+            color: var(--neutral-900);
         }
 
         .step-content {
             padding: 24px;
-            border-top: 1px solid var(--neutral-100);
         }
 
         .step-description {
             font-size: 15px;
-            font-weight: 400;
-            color: var(--neutral-500);
-            line-height: 24px;
-            margin-bottom: 20px;
-        }
-
-        .step-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .step-option-label {
-            font-size: 14px;
-            font-weight: 600;
+            line-height: 1.7;
             color: var(--neutral-700);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
-        .option-card {
-            background: var(--neutral-25);
-            border: 1.5px solid var(--neutral-100);
-            border-radius: 8px;
-            padding: 16px 20px;
+        .step-list {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--neutral-700);
+        }
+
+        /* Resource Cards */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .resource-card {
+            border: 1px solid var(--neutral-200);
+            border-radius: 12px;
+            overflow: hidden;
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
-        .option-card:hover {
-            border-color: var(--teal-500);
-            background: var(--teal-50);
+        .resource-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .option-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .resource-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .resource-content {
+            padding: 16px;
+        }
+
+        .resource-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--orange-500);
+            letter-spacing: 0.5px;
             margin-bottom: 8px;
         }
 
-        .option-badge {
-            padding: 4px 10px;
-            background: var(--white);
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--teal-700);
-        }
-
-        .option-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--neutral-700);
-        }
-
-        .option-description {
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--neutral-500);
-            line-height: 20px;
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 12px 24px;
-            border-radius: 8px;
+        .resource-title {
             font-size: 16px;
             font-weight: 600;
-            height: 44px;
-            min-width: 140px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn:active {
-            transform: scale(0.98);
-        }
-
-        .btn-primary {
-            background: var(--teal-500);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: var(--teal-700);
-            transform: scale(1.02);
-        }
-
-        .student-lesson-link {
-            background: var(--teal-50);
-            border: 1px solid var(--teal-300);
-            border-radius: 12px;
-            padding: 20px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 24px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .student-lesson-link:hover {
-            box-shadow: 0px 4px 12px rgba(66, 202, 231, 0.2);
-        }
-
-        .student-lesson-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--teal-700);
+            color: var(--neutral-900);
+            line-height: 1.4;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .header,
-            .lesson-header,
-            .content-area {
-                padding-left: 24px;
-                padding-right: 24px;
+        @media (max-width: 1024px) {
+            .lesson-container {
+                grid-template-columns: 1fr;
             }
 
-            .lesson-title {
-                font-size: 28px;
-                line-height: 36px;
+            .sidebar {
+                display: none;
+            }
+
+            .content-area {
+                padding: 32px 24px;
+            }
+
+            .objectives-grid {
+                grid-template-columns: 1fr;
             }
 
             .vocabulary-grid {
                 grid-template-columns: 1fr;
             }
 
-            .step-header {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lesson-title {
+                font-size: 24px;
+            }
+
+            .lesson-overview-banner {
                 flex-direction: column;
+                gap: 16px;
                 align-items: flex-start;
+            }
+
+            .banner-meta {
+                flex-direction: column;
                 gap: 12px;
             }
         }
@@ -493,284 +499,390 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="logo-section" style="cursor: pointer;" onclick="window.location.href='index.html'" title="Back to Index">
-            <div class="logo-icon">N</div>
-            <div class="logo-text">Newsela Core</div>
+        <div class="logo-section" onclick="window.location.href='index.html'" title="Back to Index">
+            <div class="logo-icon">🧵</div>
+            <div class="logo-text">Threads & Themes</div>
         </div>
-        <div class="user-profile">
-            <div class="user-name">Teacher Name</div>
-            <div class="user-avatar">TN</div>
-        </div>
+        <div class="user-profile">TN</div>
     </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Lesson Header -->
-        <section class="lesson-header">
-            <div class="lesson-meta">
-                <span class="duration-badge">⏱ 45 minutes</span>
-            </div>
-            <h1 class="lesson-title">Introduction to Argumentative Writing</h1>
-            <div class="standards-section">
-                <span class="standard-tag">CCSS.ELA-LITERACY.W.6.1</span>
-                <span class="standard-tag">CCSS.ELA-LITERACY.W.6.1.A</span>
-                <span class="standard-tag">CCSS.ELA-LITERACY.W.6.1.B</span>
-            </div>
-        </section>
+    <!-- Lesson Container -->
+    <div class="lesson-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-title">On This Page</div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active">Lesson Overview</div>
+                <div class="nav-item">Objectives</div>
+                <div class="nav-item">Guiding Questions</div>
+                <div class="nav-item">Essential Questions</div>
+                <div class="nav-item">Connection to Anchor Text</div>
+                <div class="nav-item">Lesson Pacing</div>
+                <div class="nav-item">Materials & Resources</div>
+                <div class="nav-item">Lesson Vocabulary</div>
+                <div class="nav-item">Lesson Preparation</div>
+                <div class="nav-item">Lesson Steps</div>
+                <div class="nav-item">Assessment</div>
+                <div class="nav-item">Additional Resources</div>
+            </nav>
+        </aside>
 
-        <!-- Content Area -->
-        <div class="content-area">
-            <!-- Student Lesson Link -->
-            <div class="student-lesson-link" onclick="window.location.href='student-lesson-intro.html'">
-                <div class="student-lesson-text">📖 View Student Lesson</div>
-                <div class="btn-icon" style="color: var(--teal-700); font-size: 20px;">→</div>
-            </div>
+        <!-- Main Content -->
+        <main class="content-area">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="teacher-home.html">Threads & Themes</a>
+                <span>›</span>
+                <a href="teacher-home.html">ELA Core 6th Grade</a>
+                <span>›</span>
+                <span>Unit 1</span>
+            </nav>
 
-            <!-- Key Vocabulary -->
-            <section class="content-section">
-                <h2 class="section-title">Key lesson vocabulary</h2>
-                <div class="vocabulary-grid">
-                    <div class="vocabulary-card">
-                        <div class="vocabulary-term">Argument</div>
-                        <div class="vocabulary-definition">A claim supported by reasons and evidence to persuade an audience</div>
+            <!-- Lesson Header -->
+            <header class="lesson-header">
+                <h1 class="lesson-title">Lesson 5: Community And Social Justice (Ch. 13)</h1>
+
+                <div class="lesson-overview-banner">
+                    <div class="banner-title">LESSON OVERVIEW</div>
+                    <div class="banner-meta">
+                        <div class="meta-item">
+                            <span>⏱</span>
+                            <span>60 minutes</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>📚</span>
+                            <span>Grade 6</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>📖</span>
+                            <span>Reading & Writing</span>
+                        </div>
                     </div>
-                    <div class="vocabulary-card">
-                        <div class="vocabulary-term">Claim</div>
-                        <div class="vocabulary-definition">A statement that expresses a writer's position on an issue</div>
+                </div>
+            </header>
+
+            <!-- Lesson Summary -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">📝</span>
+                    Lesson Summary
+                </h2>
+                <div class="section-content">
+                    <p>In this lesson, students will explore themes of community and social justice through Chapter 13 of the anchor text.
+                    They will analyze how the author develops these themes and connect them to real-world issues. Students will engage
+                    in close reading, discussion, and written response activities to deepen their understanding.</p>
+                    <p style="margin-top: 12px; color: var(--neutral-500); font-size: 14px;">Word Count: ~850 words</p>
+                </div>
+            </section>
+
+            <!-- Objectives -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">🎯</span>
+                    Objectives
+                </h2>
+                <div class="objectives-grid">
+                    <div class="objective-card">
+                        <div class="objective-icon">📖</div>
+                        <div class="objective-label">Content Objective</div>
+                        <div class="objective-text">Students will analyze how the author develops themes of community and social justice in Chapter 13.</div>
                     </div>
-                    <div class="vocabulary-card">
-                        <div class="vocabulary-term">Evidence</div>
-                        <div class="vocabulary-definition">Facts, examples, or expert opinions that support a claim</div>
+                    <div class="objective-card">
+                        <div class="objective-icon">💬</div>
+                        <div class="objective-label">Language Objective</div>
+                        <div class="objective-text">Students will use evidence from the text to support their analysis in written and oral responses.</div>
                     </div>
-                    <div class="vocabulary-card">
-                        <div class="vocabulary-term">Counterclaim</div>
-                        <div class="vocabulary-definition">An opposing viewpoint that challenges the main argument</div>
+                    <div class="objective-card">
+                        <div class="objective-icon">🧠</div>
+                        <div class="objective-label">Social-Emotional Objective</div>
+                        <div class="objective-text">Students will reflect on their own role in their community and consider how they can promote justice.</div>
                     </div>
-                    <div class="vocabulary-card">
-                        <div class="vocabulary-term">Reasoning</div>
-                        <div class="vocabulary-definition">The logical connection between evidence and the claim</div>
-                    </div>
-                    <div class="vocabulary-card">
-                        <div class="vocabulary-term">Persuasion</div>
-                        <div class="vocabulary-definition">The act of convincing someone to accept a particular point of view</div>
-                    </div>
+                </div>
+            </section>
+
+            <!-- Guiding Questions -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">❓</span>
+                    Guiding Questions
+                </h2>
+                <div class="questions-list">
+                    <div class="question-item">What is the relationship between individual actions and community change?</div>
+                    <div class="question-item">How does the author use specific events in Chapter 13 to develop the theme of social justice?</div>
+                    <div class="question-item">What connections can we make between the text and current social justice movements?</div>
                 </div>
             </section>
 
             <!-- Essential Questions -->
-            <section class="content-section">
-                <h2 class="section-title">Essential questions</h2>
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">💡</span>
+                    Essential Questions
+                </h2>
                 <div class="questions-list">
-                    <div class="question-item">
-                        <div class="question-number">1</div>
-                        <div class="question-text">What makes an argument effective and persuasive?</div>
+                    <div class="question-item">What does it mean to be part of a community?</div>
+                    <div class="question-item">How do individuals create change in their communities?</div>
+                </div>
+            </section>
+
+            <!-- Connection to Anchor Text -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">🔗</span>
+                    Connection to Anchor Text
+                </h2>
+                <div class="section-content">
+                    <p>This lesson focuses on Chapter 13, where the protagonist witnesses injustice in their community and must decide
+                    how to respond. This chapter serves as a turning point in the novel, connecting to the broader themes of identity,
+                    belonging, and systems of power that students have been exploring throughout the unit.</p>
+                </div>
+            </section>
+
+            <!-- Lesson Pacing -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">⏱</span>
+                    Lesson Pacing
+                </h2>
+                <table class="lesson-table">
+                    <thead>
+                        <tr>
+                            <th>Activity</th>
+                            <th>Duration</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Warm-Up</strong></td>
+                            <td>10 min</td>
+                            <td>Quick write and pair-share on community</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reading</strong></td>
+                            <td>20 min</td>
+                            <td>Close reading of Chapter 13 with annotations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Discussion</strong></td>
+                            <td>15 min</td>
+                            <td>Small group and whole class discussion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Written Response</strong></td>
+                            <td>12 min</td>
+                            <td>Evidence-based written response</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Closing</strong></td>
+                            <td>3 min</td>
+                            <td>Exit ticket and reflection</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Materials & Resources -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">📦</span>
+                    Materials & Resources
+                </h2>
+                <div class="section-content">
+                    <ul style="list-style-position: inside; padding-left: 0;">
+                        <li style="margin-bottom: 8px;">Anchor text (one copy per student)</li>
+                        <li style="margin-bottom: 8px;">Annotation tools (highlighters, sticky notes)</li>
+                        <li style="margin-bottom: 8px;">Discussion protocol chart</li>
+                        <li style="margin-bottom: 8px;">Written response prompt handout</li>
+                        <li style="margin-bottom: 8px;">Exit ticket (digital or paper)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Lesson Vocabulary -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">📚</span>
+                    Lesson Vocabulary
+                </h2>
+                <div class="vocabulary-grid">
+                    <div class="vocab-card">
+                        <div class="vocab-term">Community</div>
+                        <div class="vocab-definition">A group of people living in the same place or having shared characteristics, experiences, or interests</div>
                     </div>
-                    <div class="question-item">
-                        <div class="question-number">2</div>
-                        <div class="question-text">How do writers use evidence to support their claims?</div>
+                    <div class="vocab-card">
+                        <div class="vocab-term">Social Justice</div>
+                        <div class="vocab-definition">Fair and equitable distribution of resources, opportunities, and privileges within a society</div>
                     </div>
-                    <div class="question-item">
-                        <div class="question-number">3</div>
-                        <div class="question-text">Why is it important to address counterclaims in argumentative writing?</div>
+                    <div class="vocab-card">
+                        <div class="vocab-term">Advocate</div>
+                        <div class="vocab-definition">To publicly support or recommend a particular cause or policy</div>
                     </div>
-                    <div class="question-item">
-                        <div class="question-number">4</div>
-                        <div class="question-text">How can we evaluate the credibility of sources and evidence?</div>
+                    <div class="vocab-card">
+                        <div class="vocab-term">Solidarity</div>
+                        <div class="vocab-definition">Unity or agreement of feeling or action among individuals with a common interest</div>
                     </div>
                 </div>
             </section>
 
-            <!-- Lesson Outline -->
-            <section class="content-section">
-                <h2 class="section-title">Lesson outline / sequence</h2>
+            <!-- Lesson Preparation -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">✅</span>
+                    Lesson Preparation
+                </h2>
+                <div class="section-content">
+                    <p><strong>Before the lesson:</strong></p>
+                    <ul style="list-style-position: inside; padding-left: 0; margin-top: 12px;">
+                        <li style="margin-bottom: 8px;">Review Chapter 13 and identify key passages for close reading</li>
+                        <li style="margin-bottom: 8px;">Prepare anchor charts with guiding questions</li>
+                        <li style="margin-bottom: 8px;">Set up discussion groups (3-4 students per group)</li>
+                        <li style="margin-bottom: 8px;">Queue up any multimedia resources</li>
+                        <li style="margin-bottom: 8px;">Print or prepare digital copies of all handouts</li>
+                    </ul>
+                </div>
+            </section>
 
+            <!-- Lesson Steps -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">📋</span>
+                    Lesson Steps
+                </h2>
                 <div class="lesson-steps">
                     <!-- Step 1 -->
-                    <div class="lesson-step">
+                    <div class="step-card">
                         <div class="step-header">
-                            <div class="step-header-left">
-                                <div class="step-number">1</div>
-                                <div class="step-title">Introduction & Hook</div>
-                            </div>
-                            <div class="step-duration">5 min</div>
+                            <div class="step-number">1</div>
+                            <div class="step-title">Warm-Up: Community Reflection (10 min)</div>
                         </div>
                         <div class="step-content">
-                            <p class="step-description">
-                                Begin with an engaging scenario or question that introduces students to the concept of argumentation.
-                                Present a relatable topic where students might have differing opinions to spark discussion.
-                            </p>
-                            <div class="step-options">
-                                <div class="step-option-label">Choose an approach:</div>
-
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="option-badge">Option A</span>
-                                        <span class="option-title">Class Debate Starter</span>
-                                    </div>
-                                    <p class="option-description">
-                                        Present a controversial topic (e.g., "Should students have longer recess?") and have students stand on different sides of the room based on their opinion.
-                                    </p>
-                                </div>
-
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="option-badge">Option B</span>
-                                        <span class="option-title">Think-Pair-Share</span>
-                                    </div>
-                                    <p class="option-description">
-                                        Students individually think about a question, discuss with a partner, then share their reasoning with the class to highlight different perspectives.
-                                    </p>
-                                </div>
-
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="option-badge">Option C</span>
-                                        <span class="option-title">Video Hook</span>
-                                    </div>
-                                    <p class="option-description">
-                                        Show a short video clip that presents a persuasive argument. Ask students to identify what made the argument convincing.
-                                    </p>
-                                </div>
+                            <div class="step-description">
+                                <p><strong>Purpose:</strong> Activate prior knowledge and connect to students' own experiences with community.</p>
+                                <p style="margin-top: 12px;"><strong>Activity:</strong></p>
                             </div>
+                            <ul class="step-list">
+                                <li>Display the prompt: "What does community mean to you? Share an example of when you felt part of a community."</li>
+                                <li>Give students 3 minutes to write individually</li>
+                                <li>Have students pair-share for 2 minutes</li>
+                                <li>Call on 3-4 volunteers to share with the whole class</li>
+                                <li>Connect student responses to today's focus on community in Chapter 13</li>
+                            </ul>
                         </div>
                     </div>
 
                     <!-- Step 2 -->
-                    <div class="lesson-step">
+                    <div class="step-card">
                         <div class="step-header">
-                            <div class="step-header-left">
-                                <div class="step-number">2</div>
-                                <div class="step-title">Direct Instruction</div>
-                            </div>
-                            <div class="step-duration">10 min</div>
+                            <div class="step-number">2</div>
+                            <div class="step-title">Close Reading of Chapter 13 (20 min)</div>
                         </div>
                         <div class="step-content">
-                            <p class="step-description">
-                                Explicitly teach the key components of argumentative writing. Use clear examples and visual aids to help students
-                                understand how claims, evidence, and reasoning work together.
-                            </p>
-                            <div class="step-options">
-                                <div class="step-option-label">Choose an approach:</div>
-
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="option-badge">Option A</span>
-                                        <span class="option-title">Anchor Chart Creation</span>
-                                    </div>
-                                    <p class="option-description">
-                                        Create an anchor chart with students showing the structure of an argument (Claim → Evidence → Reasoning). Use a familiar example.
-                                    </p>
-                                </div>
-
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="option-badge">Option B</span>
-                                        <span class="option-title">Annotated Model Text</span>
-                                    </div>
-                                    <p class="option-description">
-                                        Display a model argumentative paragraph and annotate it together, identifying and color-coding each component.
-                                    </p>
-                                </div>
-
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="option-badge">Option C</span>
-                                        <span class="option-title">Interactive Presentation</span>
-                                    </div>
-                                    <p class="option-description">
-                                        Use slides or interactive whiteboard to present concepts with embedded questions and real-time student participation.
-                                    </p>
-                                </div>
+                            <div class="step-description">
+                                <p><strong>Purpose:</strong> Engage students in deep analysis of how the author develops themes.</p>
+                                <p style="margin-top: 12px;"><strong>Activity:</strong></p>
                             </div>
+                            <ul class="step-list">
+                                <li>Introduce the close reading focus: theme development and evidence</li>
+                                <li>Model annotation of the first key passage</li>
+                                <li>Students read Chapter 13 independently, annotating for theme and character response to injustice</li>
+                                <li>Circulate to support students and monitor comprehension</li>
+                                <li>Pause at key moments to think-pair-share observations</li>
+                            </ul>
                         </div>
                     </div>
 
                     <!-- Step 3 -->
-                    <div class="lesson-step">
+                    <div class="step-card">
                         <div class="step-header">
-                            <div class="step-header-left">
-                                <div class="step-number">3</div>
-                                <div class="step-title">Guided Practice</div>
-                            </div>
-                            <div class="step-duration">15 min</div>
+                            <div class="step-number">3</div>
+                            <div class="step-title">Small Group Discussion (15 min)</div>
                         </div>
                         <div class="step-content">
-                            <p class="step-description">
-                                Work together as a class to identify and analyze arguments. Guide students through the process of recognizing
-                                claims and evaluating the strength of evidence.
-                            </p>
-                            <div class="step-options">
-                                <div class="step-option-label">Choose an approach:</div>
-
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="option-badge">Option A</span>
-                                        <span class="option-title">Newsela Article Analysis</span>
-                                    </div>
-                                    <p class="option-description">
-                                        Read a Newsela article together and have students identify the claim, evidence, and reasoning in small groups.
-                                    </p>
-                                </div>
-
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="option-badge">Option B</span>
-                                        <span class="option-title">Claim Sort Activity</span>
-                                    </div>
-                                    <p class="option-description">
-                                        Provide students with statements and have them categorize as strong claims, weak claims, or not claims at all.
-                                    </p>
-                                </div>
-
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="option-badge">Option C</span>
-                                        <span class="option-title">Evidence Evaluation</span>
-                                    </div>
-                                    <p class="option-description">
-                                        Present a claim with multiple pieces of evidence (strong and weak) and discuss which evidence best supports the claim and why.
-                                    </p>
-                                </div>
+                            <div class="step-description">
+                                <p><strong>Purpose:</strong> Deepen understanding through collaborative analysis.</p>
+                                <p style="margin-top: 12px;"><strong>Activity:</strong></p>
                             </div>
+                            <ul class="step-list">
+                                <li>Students move into pre-assigned discussion groups</li>
+                                <li>Display discussion protocol and guiding questions</li>
+                                <li>Groups discuss for 10 minutes using the protocol</li>
+                                <li>Whole class debrief: each group shares one key insight (5 min)</li>
+                            </ul>
                         </div>
                     </div>
 
                     <!-- Step 4 -->
-                    <div class="lesson-step">
+                    <div class="step-card">
                         <div class="step-header">
-                            <div class="step-header-left">
-                                <div class="step-number">4</div>
-                                <div class="step-title">Independent Practice</div>
-                            </div>
-                            <div class="step-duration">12 min</div>
+                            <div class="step-number">4</div>
+                            <div class="step-title">Written Response (12 min)</div>
                         </div>
                         <div class="step-content">
-                            <p class="step-description">
-                                Students work independently to apply what they've learned. This is an opportunity for formative assessment
-                                and to identify students who may need additional support.
-                            </p>
+                            <div class="step-description">
+                                <p><strong>Purpose:</strong> Assess student understanding and ability to write with evidence.</p>
+                                <p style="margin-top: 12px;"><strong>Prompt:</strong> "How does the author develop the theme of social justice in Chapter 13?
+                                Use at least two pieces of evidence from the text to support your analysis."</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Step 5 -->
-                    <div class="lesson-step">
+                    <div class="step-card">
                         <div class="step-header">
-                            <div class="step-header-left">
-                                <div class="step-number">5</div>
-                                <div class="step-title">Closing & Assessment</div>
-                            </div>
-                            <div class="step-duration">3 min</div>
+                            <div class="step-number">5</div>
+                            <div class="step-title">Closing & Exit Ticket (3 min)</div>
                         </div>
                         <div class="step-content">
-                            <p class="step-description">
-                                Wrap up the lesson by reviewing key concepts and assessing student understanding. Preview the next lesson
-                                and how today's learning will connect to future work.
-                            </p>
+                            <div class="step-description">
+                                <p><strong>Exit Ticket:</strong> "What is one action you could take to promote justice in your own community?"</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-        </div>
-    </main>
+
+            <!-- Assessment -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">✓</span>
+                    Assessment
+                </h2>
+                <div class="section-content">
+                    <p><strong>Formative Assessment:</strong></p>
+                    <ul style="list-style-position: inside; padding-left: 0; margin-top: 12px;">
+                        <li style="margin-bottom: 8px;">Monitor annotations during close reading</li>
+                        <li style="margin-bottom: 8px;">Listen to small group discussions</li>
+                        <li style="margin-bottom: 8px;">Review written responses for evidence-based analysis</li>
+                        <li style="margin-bottom: 8px;">Collect and review exit tickets</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Additional Resources -->
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">📎</span>
+                    Additional Resources
+                </h2>
+                <div class="resources-grid">
+                    <div class="resource-card" onclick="window.location.href='student-lesson-intro.html'">
+                        <div class="resource-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                        <div class="resource-content">
+                            <div class="resource-label">Student Material</div>
+                            <div class="resource-title">Chapter 13: Student Reading Guide</div>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                        <div class="resource-content">
+                            <div class="resource-label">Extension Activity</div>
+                            <div class="resource-title">Community Action Project Template</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
